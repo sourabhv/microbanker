@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "359206032080",
+    "firebase_url": "https://microbanker-2fd43.firebaseio.com",
+    "project_id": "microbanker-2fd43",
+    "storage_bucket": "microbanker-2fd43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359206032080:android:fcdea83f10082ea8",
+        "android_client_info": {
+          "package_name": "com.metacode.mirobanker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359206032080-2j0je7g430mn0mrodhm45giuoecls5bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbmS3fBHxfIqgynORcErqoA9iGFz4aeYI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
