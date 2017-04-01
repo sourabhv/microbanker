@@ -7,4 +7,12 @@
     <string name="login_error_password_empty">Please enter a password</string>
     <string name="login_error_auth_failed">Login Failed. Please check your email / password and try again.</string>
     <string name="login_dialog_message">Logging you in …</string>
+    <string name="list_drawer_menu_account">Account</string>
+    <string name="list_drawer_menu_account_log_out">Log Out</string>
+
+    <string name="manager">Manager: %s</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="phone_number">#%s</string>
+    <string name="no_data_found">No data found</string>
 </resources>

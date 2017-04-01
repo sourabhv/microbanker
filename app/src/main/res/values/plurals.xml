@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="x_years_old">
+        <item quantity="zero">Zero Years Old</item>
+        <item quantity="one">%d Year Old</item>
+        <item quantity="other">%d Years Old</item>
+    </plurals>
+
+</resources>
