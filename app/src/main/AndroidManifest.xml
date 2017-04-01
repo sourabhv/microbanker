@@ -14,17 +14,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.SplashActivity"
-            android:theme="@style/AppTheme.Fullscreen"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/AppTheme.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.auth.LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity android:name=".ui.list.ListActivity"
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".ui.list.ListActivity"
             android:theme="@style/AppTheme.NoTitle" />
+        <activity
+            android:name=".ui.list.AddItemActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

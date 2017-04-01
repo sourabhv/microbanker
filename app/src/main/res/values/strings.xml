@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">MiroBanker</string>
+    <string name="app_name" translatable="false">MicroBanker</string>
     <string name="login_email_label">Email Address</string>
     <string name="login_password_label">Password</string>
     <string name="login_login_button_label">Login</string>
@@ -15,4 +15,26 @@
     <string name="female">Female</string>
     <string name="phone_number">#%s</string>
     <string name="no_data_found">No data found</string>
+    <string name="add_item">Add Item</string>
+
+
+    <string name="add_item_name_label">Name</string>
+    <string name="add_item_age_label">Age</string>
+    <string name="add_item_gender_label">Gender</string>
+    <string name="add_item_phone_number_label">Phone Number</string>
+    <string name="add_item_manager_label">Manager</string>
+    <string name="add_item_photo_label">Photo</string>
+    <string name="pick_image">Click to pick an image</string>
+    <string name="image_pick_camera">Camera</string>
+    <string name="image_pick_gallery">Gallery</string>
+
+    <string name="add_item_error_name_empty">Please enter a name</string>
+    <string name="add_item_error_image_empty">Please select a photo</string>
+    <string name="add_item_error_age_empty">Please select an age</string>
+    <string name="add_item_error_gender_empty">Please select an gender</string>
+    <string name="add_item_error_phone_empty">Please enter a phone number</string>
+    <string name="add_item_error_manager_empty">Please select an manager</string>
+    <string name="select_manager">Select Manager</string>
+    <string name="uploading_text">Uploading. Please wait...</string>
+
 </resources>

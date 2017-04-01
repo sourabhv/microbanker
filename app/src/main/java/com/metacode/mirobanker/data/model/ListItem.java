@@ -18,7 +18,7 @@ package com.metacode.mirobanker.data.model;
 public class ListItem {
 
     public static class Manager {
-        public String mName;
+        public String mName = "";
         public Manager() {
             // for firebase
         }
@@ -37,12 +37,12 @@ public class ListItem {
         }
     }
 
-    private String mName;
+    private String mName = "";
     private int mAge;
     private int mGender;
-    private Manager mManager;
-    private String mImageUrl;
-    private String mPhoneNumber;
+    private Manager mManager = new Manager();
+    private String mImageUrl = "";
+    private String mPhoneNumber = "";
 
     public ListItem() {
         // for firebase
