@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.metacode.mirobanker.R;
 import com.metacode.mirobanker.data.model.ListItem;
 import com.metacode.mirobanker.databinding.DialogManagerBottomSheetBinding;
+import com.metacode.mirobanker.util.Database;
 
 import butterknife.ButterKnife;
 
@@ -73,11 +74,18 @@ public class ManagerBottomSheet extends BottomSheetDialogFragment {
             ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
         }
 
+        mBinding.progressBar.setVisibility(View.VISIBLE);
+
         mAdapter = new FirebaseRecyclerAdapter<ListItem.Manager, ManagerItemHolder>(
                 ListItem.Manager.class,
                 android.R.layout.simple_list_item_1,
                 ManagerItemHolder.class,
-                FirebaseDatabase.getInstance().getReference().child("managers")) {
+                Database.get().getReference().child("managers")) {
+            @Override
+            protected void onDataChanged() {
+                mBinding.progressBar.setVisibility(View.GONE);
+                mBinding.placeholder.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
+            }
 
             @Override
             protected void populateViewHolder(ManagerItemHolder viewHolder, ListItem.Manager model, int position) {

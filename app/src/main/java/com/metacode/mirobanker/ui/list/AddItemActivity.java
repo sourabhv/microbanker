@@ -27,6 +27,7 @@ import com.kelvinapps.rxfirebase.RxFirebaseStorage;
 import com.metacode.mirobanker.R;
 import com.metacode.mirobanker.data.model.ListItem;
 import com.metacode.mirobanker.databinding.ActivityAddItemBinding;
+import com.metacode.mirobanker.util.Database;
 import com.mlsdev.rximagepicker.RxImagePicker;
 import com.mlsdev.rximagepicker.Sources;
 
@@ -54,7 +55,7 @@ public class AddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_item);
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+        mDatabaseRef = Database.get().getReference();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
