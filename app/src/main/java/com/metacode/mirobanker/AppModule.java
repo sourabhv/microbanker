@@ -2,8 +2,6 @@ package com.metacode.mirobanker;
 
 import android.content.Context;
 
-import com.metacode.mirobanker.data.sharedprefs.Preferences;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -41,11 +39,6 @@ public class AppModule {
     @Provides @Singleton
     public Context providesContext(App app) {
         return app.getApplicationContext();
-    }
-
-    @Provides @Singleton
-    public Preferences providesPreferences(Context context) {
-        return new Preferences(context);
     }
 
 }

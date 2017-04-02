@@ -15,6 +15,7 @@
         <activity
             android:name=".ui.main.SplashActivity"
             android:noHistory="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +25,16 @@
         </activity>
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.list.ListActivity"
-            android:theme="@style/AppTheme.NoTitle" />
+            android:theme="@style/AppTheme.NoTitle"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.list.AddItemActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

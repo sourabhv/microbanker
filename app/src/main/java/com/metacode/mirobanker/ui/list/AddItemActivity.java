@@ -28,6 +28,7 @@ import com.metacode.mirobanker.R;
 import com.metacode.mirobanker.data.model.ListItem;
 import com.metacode.mirobanker.databinding.ActivityAddItemBinding;
 import com.metacode.mirobanker.util.Database;
+import com.metacode.mirobanker.util.rxfir.FirebaseRx;
 import com.mlsdev.rximagepicker.RxImagePicker;
 import com.mlsdev.rximagepicker.Sources;
 
@@ -35,7 +36,9 @@ import java.io.File;
 
 import retrofit2.http.Url;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 // NOTE For a known bug https://code.google.com/p/android/issues/detail?id=235661
@@ -156,12 +159,30 @@ public class AddItemActivity extends AppCompatActivity {
                 mBinding.managerLayout.setErrorEnabled(false);
             }
 
-            if (mListItem.getImageUrl() == null || mListItem.getImageUrl().isEmpty())
-                initUpload();
-            else
-                updateDatabase();
-        });
+            StorageReference sRef = mStorageRef.child("images/" + mLocalImageUri.getLastPathSegment());
+            DatabaseReference dbRef = mDatabaseRef.child("records").child(mListItem.getPhoneNumber());
 
+            mProgressDialog = ProgressDialog.show(this, null, getString(R.string.uploading_text), true, false);
+            FirebaseRx.uploadFile(sRef, mLocalImageUri)
+                    .flatMap(taskSnapshot -> {
+                        mListItem.setImageUrl(taskSnapshot.getDownloadUrl().toString());
+                        return FirebaseRx.updateDatabase(dbRef, mListItem);
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(bool -> {}, e -> {
+                        if (mProgressDialog != null && mProgressDialog.isShowing())
+                            mProgressDialog.dismiss();
+                        mBinding.error.setVisibility(View.VISIBLE);
+                        mBinding.error.setText(e.getLocalizedMessage());
+                        mBinding.scrollview.scrollTo(0, mBinding.error.getBottom());
+                    }, () -> {
+                        if (mProgressDialog != null && mProgressDialog.isShowing())
+                            mProgressDialog.dismiss();
+                        finish();
+                    });
+
+        });
     }
 
     public void showManagerBottomSheet() {
@@ -175,39 +196,6 @@ public class AddItemActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(fragment, null)
                 .commitAllowingStateLoss();
-    }
-
-    public void initUpload() {
-        mProgressDialog = ProgressDialog.show(this, null, getString(R.string.uploading_text), true, false);
-        UploadTask uploadTask = mStorageRef.child("images/" + mLocalImageUri.getLastPathSegment())
-                .putFile(mLocalImageUri);
-        uploadTask.addOnSuccessListener(taskSnapshot -> {
-            mListItem.setImageUrl(taskSnapshot.getDownloadUrl().toString());
-            updateDatabase();
-        });
-        uploadTask.addOnFailureListener(e -> {
-            if (mProgressDialog != null && mProgressDialog.isShowing())
-                mProgressDialog.dismiss();
-            mBinding.error.setVisibility(View.VISIBLE);
-            mBinding.error.setText(e.getLocalizedMessage());
-            mBinding.scrollview.scrollTo(0, mBinding.error.getBottom());
-        });
-    }
-
-    private void updateDatabase() {
-        Task<Void> task = mDatabaseRef.child("records").child(mListItem.getPhoneNumber()).setValue(mListItem);
-        task.addOnSuccessListener(aVoid -> {
-            if (mProgressDialog != null && mProgressDialog.isShowing())
-                mProgressDialog.dismiss();
-            finish();
-        });
-        task.addOnFailureListener(e -> {
-            if (mProgressDialog != null && mProgressDialog.isShowing())
-                mProgressDialog.dismiss();
-            mBinding.error.setVisibility(View.VISIBLE);
-            mBinding.error.setText(e.getLocalizedMessage());
-            mBinding.scrollview.scrollTo(0, mBinding.error.getBottom());
-        });
     }
 
 }

@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.metacode.mirobanker.App;
 
-import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -40,7 +39,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
-        ButterKnife.bind(this);
     }
 
     protected void addSubscription(Subscription subscription) {

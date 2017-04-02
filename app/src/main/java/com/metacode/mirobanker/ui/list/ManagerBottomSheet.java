@@ -15,13 +15,11 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.FirebaseDatabase;
 import com.metacode.mirobanker.R;
 import com.metacode.mirobanker.data.model.ListItem;
 import com.metacode.mirobanker.databinding.DialogManagerBottomSheetBinding;
 import com.metacode.mirobanker.util.Database;
 
-import butterknife.ButterKnife;
 
 /*
  * Copyright 2017 Sourabh Verma
@@ -38,6 +36,7 @@ import butterknife.ButterKnife;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@SuppressWarnings("RestrictedApi")
 public class ManagerBottomSheet extends BottomSheetDialogFragment {
 
     private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
@@ -63,7 +62,6 @@ public class ManagerBottomSheet extends BottomSheetDialogFragment {
         View contentView = View.inflate(getContext(), R.layout.dialog_manager_bottom_sheet, null);
         dialog.setContentView(contentView);
         mBinding = DataBindingUtil.bind(contentView);
-        ButterKnife.bind(this, contentView);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) contentView.getParent()).getLayoutParams();
         CoordinatorLayout.Behavior behavior = params.getBehavior();
         if (behavior != null && behavior instanceof BottomSheetBehavior) {
